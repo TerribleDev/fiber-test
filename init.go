@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/TerribleDev/fiber-test/people"
 	"github.com/gofiber/fiber/v2"
 )
@@ -15,6 +17,10 @@ func main() {
 		}
 		return c.JSON(person)
 	})
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = ":3000"
+	}
 
-	app.Listen(":3000")
+	app.Listen(port)
 }
